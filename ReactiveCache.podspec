@@ -18,11 +18,11 @@ Pod::Spec.new do |s|
                        * Markdown format.
                        * Don't worry about the indent, we strip it!
                        DESC
-  s.homepage         = "https://github.com/haifeng/ReactiveCache"
+  s.homepage         = "https://github.com/haifengkao/ReactiveCache"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Hai Feng Kao" => "haifeng@cocoaspice.in" }
-  s.source           = { :git => "https://github.com/haifeng/ReactiveCache.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/haifengkao/ReactiveCache.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
