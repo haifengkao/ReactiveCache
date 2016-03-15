@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7736E430344747446088A907'
+               BlueprintIdentifier = 'B9930FD77D744435B1D57BF5'
                BlueprintName = 'HanekeObjc'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'HanekeObjc.framework'>
