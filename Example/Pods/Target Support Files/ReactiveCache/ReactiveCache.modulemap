@@ -1,0 +1,6 @@
+framework module ReactiveCache {
+  umbrella header "ReactiveCache-umbrella.h"
+
+  export *
+  module * { export * }
+}

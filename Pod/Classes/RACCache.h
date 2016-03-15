@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RACSignal.h>
+#import "RACSignal.h"
+
 @protocol RACCache
 - (RACSignal*)objectForKey:(NSString *)key;
 - (void)setObject:(id<NSCoding>)object forKey:(NSString *)key;

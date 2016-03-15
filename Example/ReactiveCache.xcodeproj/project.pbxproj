@@ -21,6 +21,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		650958799EBF919F811A279A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BB4DAE4FBBB59B4C6CF627 /* Pods.framework */; };
 		86C63C704DFD947DF68D6DCA /* Pods_ReactiveCache_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0EA1592BC9788F8AB553E8C /* Pods_ReactiveCache_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		8913C28E8264F09E0FA4E3EC /* Pods-ReactiveCache_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveCache_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactiveCache_Example/Pods-ReactiveCache_Example.release.xcconfig"; sourceTree = "<group>"; };
 		B0EA1592BC9788F8AB553E8C /* Pods_ReactiveCache_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactiveCache_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B8B781946B0C43C4CCE867 /* Pods-ReactiveCache_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveCache_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactiveCache_Tests/Pods-ReactiveCache_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		F6BB4DAE4FBBB59B4C6CF627 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
 				45ECC2A5F8E8E25DEE240DD8 /* Pods_ReactiveCache_Example.framework in Frameworks */,
+				650958799EBF919F811A279A /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +137,7 @@
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				1419737EFBF6C46FF6C77543 /* Pods_ReactiveCache_Example.framework */,
 				B0EA1592BC9788F8AB553E8C /* Pods_ReactiveCache_Tests.framework */,
+				F6BB4DAE4FBBB59B4C6CF627 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -380,7 +384,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactiveCache_Example/Pods-ReactiveCache_Example-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -515,6 +519,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReactiveCache/ReactiveCache-Prefix.pch";
 				INFOPLIST_FILE = "ReactiveCache/ReactiveCache-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -530,6 +535,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ReactiveCache/ReactiveCache-Prefix.pch";
 				INFOPLIST_FILE = "ReactiveCache/ReactiveCache-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

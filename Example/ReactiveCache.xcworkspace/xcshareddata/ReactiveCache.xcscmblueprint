@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E05F1F6C94340956BC7F80BD6BD7BA6507CE6E55",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E05F1F6C94340956BC7F80BD6BD7BA6507CE6E55" : 0,
+    "755540BD96536D9F32E90A8C1AFB157880FB0EEE" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "77DDB88A-186D-4747-9E48-2B98714E8C9E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E05F1F6C94340956BC7F80BD6BD7BA6507CE6E55" : "ReactiveCache\/",
+    "755540BD96536D9F32E90A8C1AFB157880FB0EEE" : "ReactiveCache\/DevelopmentPods\/HanekeObjc\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ReactiveCache",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Example\/ReactiveCache.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/haifengkao\/HanekeObjc.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "755540BD96536D9F32E90A8C1AFB157880FB0EEE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/haifengkao\/ReactiveCache.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E05F1F6C94340956BC7F80BD6BD7BA6507CE6E55"
+    }
+  ]
+}
