@@ -9,6 +9,5 @@ end
 
 target 'ReactiveCache_Tests', :exclusive => true do
   pod "ReactiveCache", :path => "../"
-
-  
+  pod "Kiwi"
 end

@@ -1,6 +1,6 @@
 {
   "name": "ReactiveCache",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "summary": "Cache for ReactiveCocoa.",
   "description": "A cache interface for ReactiveCocoa. The underlying cache is HanekeSwift.\n\n* Markdown format.\n* Don't worry about the indent, we strip it!",
   "homepage": "https://github.com/haifengkao/ReactiveCache",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/haifengkao/ReactiveCache.git",
-    "tag": "0.7.0"
+    "tag": "0.8.0"
   },
   "platforms": {
     "ios": "8.0"

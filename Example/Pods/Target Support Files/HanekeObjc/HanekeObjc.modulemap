@@ -1,0 +1,6 @@
+framework module HanekeObjc {
+  umbrella header "HanekeObjc-umbrella.h"
+
+  export *
+  module * { export * }
+}
