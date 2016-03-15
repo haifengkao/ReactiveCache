@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ReactiveCache"
-  s.version          = "0.4.0"
+  s.version          = "0.5.0"
   s.summary          = "Cache for ReactiveCocoa."
   s.description      = <<-DESC
                        A cache interface for ReactiveCocoa. The underlying cache is HanekeSwift.
