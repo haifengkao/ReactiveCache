@@ -9,11 +9,10 @@
 
 Pod::Spec.new do |s|
   s.name             = "ReactiveCache"
-  s.version          = "0.3.0"
+  s.version          = "0.4.0"
   s.summary          = "Cache for ReactiveCocoa."
   s.description      = <<-DESC
-                       A cache interface for ReactiveCocor with some
-                       implementation for TMCache
+                       A cache interface for ReactiveCocoa. The underlying cache is HanekeSwift.
 
                        * Markdown format.
                        * Don't worry about the indent, we strip it!
@@ -24,7 +23,7 @@ Pod::Spec.new do |s|
   s.author           = { "Hai Feng Kao" => "haifeng@cocoaspice.in" }
   s.source           = { :git => "https://github.com/haifengkao/ReactiveCache.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
