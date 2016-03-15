@@ -1,6 +1,7 @@
 # ReactiveCache
 
-[![CI Status](http://img.shields.io/travis/Hai Feng Kao/ReactiveCache.svg?style=flat)](https://travis-ci.org/Hai Feng Kao/ReactiveCache)
+[![CI Status](http://img.shields.io/travis/haifengkao/ReactiveCache.svg?style=flat)](https://travis-ci.org/haifengkao/ReactiveCache)
+[![Coverage Status](https://coveralls.io/repos/haifengkao/ReactiveCache/badge.svg?branch=master&service=github)](https://coveralls.io/github/haifengkao/ReactiveCache?branch=master)
 [![Version](https://img.shields.io/cocoapods/v/ReactiveCache.svg?style=flat)](http://cocoapods.org/pods/ReactiveCache)
 [![License](https://img.shields.io/cocoapods/l/ReactiveCache.svg?style=flat)](http://cocoapods.org/pods/ReactiveCache)
 [![Platform](https://img.shields.io/cocoapods/p/ReactiveCache.svg?style=flat)](http://cocoapods.org/pods/ReactiveCache)

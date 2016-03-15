@@ -33,6 +33,6 @@ Pod::Spec.new do |s|
 #  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.dependency 'ReactiveCocoa/Core'
-  s.dependency 'TMCache'
+  s.dependency 'ReactiveCocoa/Core', '~> 2.0'
+  s.dependency 'HanekeObjc'
 end

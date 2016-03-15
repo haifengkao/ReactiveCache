@@ -1,11 +1,9 @@
 PODS:
   - ReactiveCache (0.1.0):
-    - ReactiveCocoa/Core
-    - TMCache
+    - ReactiveCocoa/Core (~> 2.0)
   - ReactiveCocoa/Core (2.5):
     - ReactiveCocoa/no-arc
   - ReactiveCocoa/no-arc (2.5)
-  - TMCache (2.1.0)
 
 DEPENDENCIES:
   - ReactiveCache (from `../`)
@@ -15,8 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  ReactiveCache: 9ca281825e690eedb9f94c0573b84ce08b4f8630
+  ReactiveCache: 392cea43bbdec06ea14059ebbd6f4bd2ac634681
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.39.0

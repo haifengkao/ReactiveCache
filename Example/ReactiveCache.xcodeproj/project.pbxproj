@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45ECC2A5F8E8E25DEE240DD8 /* Pods_ReactiveCache_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1419737EFBF6C46FF6C77543 /* Pods_ReactiveCache_Example.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		45ECC2A5F8E8E25DEE240DD8 /* Pods_ReactiveCache_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1419737EFBF6C46FF6C77543 /* Pods_ReactiveCache_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -21,7 +21,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		86C63C704DFD947DF68D6DCA /* Pods_ReactiveCache_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0EA1592BC9788F8AB553E8C /* Pods_ReactiveCache_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		86C63C704DFD947DF68D6DCA /* Pods_ReactiveCache_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0EA1592BC9788F8AB553E8C /* Pods_ReactiveCache_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
