@@ -35,29 +35,17 @@ extension NSHTTPURLResponse {
     
 }
 
-public class NetworkManager
-{
-    /**
-        A shared instance of `Manager`, used by top-level Alamofire request methods, and suitable for use directly 
-        for any ad hoc requests.
-    */
-    public static let sharedInstance: Manager? = {
-        let delegate = Manager.SessionDelegate()
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
-
-        return Manager.init(session: session, delegate:delegate)
-    }()
-}
-
 public class AltNetworkFetcher<T : DataConvertible> : Fetcher<T> {
     
     let URL : NSURL
+    let manager: Manager
     
-    public init(URL : NSURL) {
+    public init(URL: NSURL, manager: Manager) {
         self.URL = URL
 
         let key =  URL.absoluteString
+
+        self.manager = manager
         super.init(key: key)
     }
     
@@ -72,21 +60,21 @@ public class AltNetworkFetcher<T : DataConvertible> : Fetcher<T> {
     {
 
         self.cancelled = false
-        let request = NetworkManager.sharedInstance?.request(
+        let request = self.manager.request(
             Method.GET,
             self.URL,
             parameters: nil
         )
 
         if let progress = progress {
-            request?.progress { [weak request] bytesRead, totalBytesRead, totalBytesExpectedToRead in
+            request.progress { [weak request] bytesRead, totalBytesRead, totalBytesExpectedToRead in
                 if let request = request {
                     progress(request.progress)
                 }
             }
         }
 
-        request?.response { [weak self] request, response, data, error in
+        request.response { [weak self] request, response, data, error in
             if let strongSelf = self {
                 strongSelf.onReceiveData(data, response: response, error: error, failure: fail, success: succeed)
             }
