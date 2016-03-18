@@ -73,12 +73,15 @@ public class AltNetworkFetcher<T : DataConvertible> : Fetcher<T> {
             self.URL,
             parameters: nil
         )
-        request?.progress { [weak request] bytesRead, totalBytesRead, totalBytesExpectedToRead in
 
-            if let request = request {
-                self.progress?(request.progress)
+        if let progress = progress {
+            request?.progress { [weak request] bytesRead, totalBytesRead, totalBytesExpectedToRead in
+                if let request = request {
+                    progress(request.progress)
+                }
             }
         }
+
         request?.response { [weak self] request, response, data, error in
             if let strongSelf = self {
                 strongSelf.onReceiveData(data, response: response, error: error, failure: fail, success: succeed)

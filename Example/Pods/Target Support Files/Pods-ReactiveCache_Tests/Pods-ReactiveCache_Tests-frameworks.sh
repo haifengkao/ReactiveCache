@@ -84,6 +84,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-ReactiveCache_Tests/Alamofire.framework"
   install_framework "Pods-ReactiveCache_Tests/AltHaneke.framework"
   install_framework "Pods-ReactiveCache_Tests/HanekeObjc.framework"
   install_framework "Pods-ReactiveCache_Tests/ReactiveCache.framework"
@@ -91,6 +92,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-ReactiveCache_Tests/Kiwi.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-ReactiveCache_Tests/Alamofire.framework"
   install_framework "Pods-ReactiveCache_Tests/AltHaneke.framework"
   install_framework "Pods-ReactiveCache_Tests/HanekeObjc.framework"
   install_framework "Pods-ReactiveCache_Tests/ReactiveCache.framework"

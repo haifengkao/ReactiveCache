@@ -7,7 +7,7 @@ public class AltCache<T: DataConvertible where T.Result == T, T : DataRepresenta
     }
 
     public override func fetch(URL URL : NSURL, formatName: String, failure fail: Fetch<T>.Failer? = nil, success succeed: Fetch<T>.Succeeder? = nil) -> Fetch<T> {
-        let fetcher = NetworkFetcher<T>(URL: URL)
+        let fetcher = AltNetworkFetcher<T>(URL: URL)
         return self.fetch(fetcher: fetcher, formatName: formatName, failure: fail, success: succeed)
     }
 
