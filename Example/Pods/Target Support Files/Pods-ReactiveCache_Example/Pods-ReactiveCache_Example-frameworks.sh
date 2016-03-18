@@ -84,14 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-ReactiveCache_Example/AltHaneke.framework"
   install_framework "Pods-ReactiveCache_Example/HanekeObjc.framework"
-  install_framework "Pods-ReactiveCache_Example/Haneke.framework"
   install_framework "Pods-ReactiveCache_Example/ReactiveCache.framework"
   install_framework "Pods-ReactiveCache_Example/ReactiveCocoa.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-ReactiveCache_Example/AltHaneke.framework"
   install_framework "Pods-ReactiveCache_Example/HanekeObjc.framework"
-  install_framework "Pods-ReactiveCache_Example/Haneke.framework"
   install_framework "Pods-ReactiveCache_Example/ReactiveCache.framework"
   install_framework "Pods-ReactiveCache_Example/ReactiveCocoa.framework"
 fi

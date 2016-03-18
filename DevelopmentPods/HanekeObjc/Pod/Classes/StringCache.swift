@@ -1,9 +1,12 @@
-import Haneke
+import AltHaneke
 
 @objc public class StringCache : NSObject {
     public typealias T = String
     public typealias FetchType = StringFetch
-    public let OriginalFormatName: String = HanekeGlobals.Cache.OriginalFormatName
+    public var formatName: NSString  = "original"
+    var internalFormatName: String {
+        get { return self.formatName as String }
+    }
 
     let cache : AltCache<T>
     public override init(){
@@ -15,25 +18,35 @@ import Haneke
         self.cache = AltCache<T>(name: name)
     }
 
-    public func set(value value: T, key: String, formatName: String = HanekeGlobals.Cache.OriginalFormatName, success succeed: ((T) -> ())? = nil) {
-        self.cache.set(value: value, key: key, formatName: formatName, success: succeed)
+    public func cachePath() -> String{
+        return self.cache.cachePath(self.internalFormatName)
     }
 
-    public func remove(key key: String, formatName: String = HanekeGlobals.Cache.OriginalFormatName) {
-        self.cache.remove(key: key, formatName: formatName)
+
+    public func addFormat(name name: String, diskCapacity : UInt64 = UINT64_MAX, transform: ((T) -> (T))? = nil) {
+        let format = Format<T>(name: name, diskCapacity: diskCapacity, transform: transform)
+        return self.cache.addFormat(format)
+    }
+
+    public func set(value value: T, key: String, success succeed: ((T) -> ())? = nil) {
+        self.cache.set(value: value, key: key, formatName: self.internalFormatName, success: succeed)
+    }
+
+    public func remove(key key: String) {
+        self.cache.remove(key: key, formatName: self.internalFormatName)
     }
 
     public func removeAll() {
         self.cache.removeAll()
     }
 
-    public func fetch(key key: String, formatName: String = HanekeGlobals.Cache.OriginalFormatName, failure fail : FetchType.Failer? = nil, success succeed : FetchType.Succeeder? = nil) -> FetchType {
-        let fetch = self.cache.fetch(key: key, formatName: formatName, failure: fail, success: succeed)
+    public func fetch(key key: String, failure fail : FetchType.Failer? = nil, success succeed : FetchType.Succeeder? = nil) -> FetchType {
+        let fetch = self.cache.fetch(key: key, formatName: self.internalFormatName, failure: fail, success: succeed)
         return FetchType(fetch: fetch);
     }
 
-    public func fetch(URL URL : NSURL, formatName: String = HanekeGlobals.Cache.OriginalFormatName,  failure fail : FetchType.Failer? = nil, success succeed : FetchType.Succeeder? = nil) -> FetchType {
-        let fetch = self.cache.fetch(URL: URL, formatName: formatName, failure: fail, success: succeed)
+    public func fetch(URL URL : NSURL, failure fail : FetchType.Failer? = nil, success succeed : FetchType.Succeeder? = nil) -> FetchType {
+        let fetch = self.cache.fetch(URL: URL, formatName: self.internalFormatName, failure: fail, success: succeed)
         return FetchType(fetch: fetch);
     }
 }

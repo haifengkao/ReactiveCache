@@ -1,15 +1,7 @@
-//
-//  String+Haneke.swift
-//  Haneke
-//
-//  Created by Hermes Pique on 8/30/14.
-//  Copyright (c) 2014 Haneke. All rights reserved.
-//
-
-import Foundation
+import AltHaneke
 
 extension String {
-
+    
     func escapedFilename() -> String {
         let originalString = self as NSString as CFString
         let charactersToLeaveUnescaped = " \\" as NSString as CFString // TODO: Add more characters that are valid in paths but not in URLs
@@ -23,7 +15,7 @@ extension String {
         guard let data = self.dataUsingEncoding(NSUTF8StringEncoding) else {
             return self
         }
-
+        
         let MD5Calculator = MD5(data)
         let MD5Data = MD5Calculator.calculate()
         let resultBytes = UnsafeMutablePointer<CUnsignedChar>(MD5Data.bytes)
@@ -44,5 +36,16 @@ extension String {
             return MD5String
         }
     }
+    
+}
 
+public class AltDiskCache: DiskCache {
+    public override func pathForKey(key: String) -> String {
+        // let escapedFilename = key.escapedFilename()
+        //let filename = escapedFilename.characters.count < Int(NAME_MAX) ? escapedFilename : key.MD5Filename()
+        // HF: always use MD5
+        let filename = key.MD5Filename()
+        let keyPath = (super.path as NSString).stringByAppendingPathComponent(filename)
+        return keyPath
+    }
 }

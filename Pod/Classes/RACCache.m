@@ -21,13 +21,24 @@
 @end
 @implementation RACCache
 
+- (instancetype)init
+{
+    return [self initWithName:@"rac_original"];
+}
+
 - (instancetype)initWithName:(NSString*)name
+{
+    return [self initWithName:name diskCapacity:UINT64_MAX];
+}
+
+- (instancetype)initWithName:(NSString*)name diskCapacity:(uint64_t)diskCapacity
 {
     if (self = [super init])
     {
         _cache = [[ImageCache alloc] initWithName:name];
         _signalCache = [[NSCache alloc] init];
-        _formatName = @"original";
+        _formatName = @"rac_original";
+        [_cache addFormatWithName:_formatName diskCapacity:diskCapacity transform: nil];
     }
 
     return self;
@@ -59,7 +70,7 @@
     {
         @strongify(self);
         [self.cache fetchWithKey:key 
-                     formatName:self.cache.OriginalFormatName
+                     formatName:self.formatName
                         failure:^(NSError* error){
                            [subscriber sendError:error];
                         }
@@ -115,8 +126,8 @@
     RACSignal* signal = [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber)
     {
         @strongify(self);
-        [self.cache fetchWithURL:url 
-                     formatName:self.cache.OriginalFormatName
+        id fetch = [self.cache fetchWithURL:url
+                     formatName:self.formatName
                         failure:^(NSError* error){
                            [subscriber sendError:error];
                         }

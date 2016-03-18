@@ -33,7 +33,14 @@ extension HanekeGlobals {
     
 }
 
-public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable> {
+public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable>: HanekeCache<T, DiskCache, NSCache>{
+
+    public override init(name: String) {
+        super.init(name: name)
+    }
+}
+
+public class HanekeCache<T: DataConvertible, DiskCacheT, MemoryCacheT where T.Result == T, T : DataRepresentable, DiskCacheT: DiskCache, MemoryCacheT: NSCache> {
     
     let name: String
     
@@ -76,7 +83,7 @@ public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable
     }
     
     public func fetch(key key: String, formatName: String = HanekeGlobals.Cache.OriginalFormatName, failure fail : Fetch<T>.Failer? = nil, success succeed : Fetch<T>.Succeeder? = nil) -> Fetch<T> {
-        let fetch = Cache.buildFetch(failure: fail, success: succeed)
+        let fetch = HanekeCache.buildFetch(failure: fail, success: succeed)
         if let (format, memoryCache, diskCache) = self.formats[formatName] {
             if let wrapper = memoryCache.objectForKey(key) as? ObjectWrapper, let result = wrapper.value as? T {
                 fetch.succeed(result)
@@ -101,7 +108,7 @@ public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable
     
     public func fetch(fetcher fetcher : Fetcher<T>, formatName: String = HanekeGlobals.Cache.OriginalFormatName, failure fail : Fetch<T>.Failer? = nil, success succeed : Fetch<T>.Succeeder? = nil) -> Fetch<T> {
         let key = fetcher.key
-        let fetch = Cache.buildFetch(failure: fail, success: succeed)
+        let fetch = HanekeCache.buildFetch(failure: fail, success: succeed)
         self.fetch(key: key, formatName: formatName, failure: { error in
             if error?.code == HanekeGlobals.Cache.ErrorCode.FormatNotFound.rawValue {
                 fetch.fail(error)
@@ -129,13 +136,34 @@ public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable
         }
     }
     
-    public func removeAll() {
+    public func removeAll(completion: (() -> ())? = nil) {
+        let group = dispatch_group_create();
         for (_, (_, memoryCache, diskCache)) in self.formats {
             memoryCache.removeAllObjects()
-            diskCache.removeAllData()
+            dispatch_group_enter(group)
+            diskCache.removeAllData {
+                dispatch_group_leave(group)
+            }
+        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(60 * NSEC_PER_SEC))
+            if dispatch_group_wait(group, timeout) != 0 {
+                Log.error("removeAll timed out waiting for disk caches")
+            }
+            let path = self.cachePath
+            do {
+                try NSFileManager.defaultManager().removeItemAtPath(path)
+            } catch {
+                Log.error("Failed to remove path \(path)", error as NSError)
+            }
+            if let completion = completion {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion()
+                }
+            }
         }
     }
-    
+
     // MARK: Notifications
     
     func onMemoryWarning() {
@@ -146,20 +174,20 @@ public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable
     
     // MARK: Formats
 
-    var formats : [String : (Format<T>, NSCache, DiskCache)] = [:]
+    public var formats : [String : (Format<T>, MemoryCacheT, DiskCacheT)] = [:]
     
     public func addFormat(format : Format<T>) {
         let name = format.name
         let formatPath = self.formatPath(formatName: name)
-        let memoryCache = NSCache()
-        let diskCache = DiskCache(path: formatPath, capacity : format.diskCapacity)
+        let memoryCache = MemoryCacheT()
+        let diskCache = DiskCacheT(path: formatPath, capacity : format.diskCapacity)
         self.formats[name] = (format, memoryCache, diskCache)
     }
     
     // MARK: Internal
     
     lazy var cachePath: String = {
-        let basePath = DiskCache.basePath()
+        let basePath = DiskCacheT.basePath()
         let cachePath = (basePath as NSString).stringByAppendingPathComponent(self.name)
         return cachePath
     }()
@@ -183,7 +211,7 @@ public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable
         return value.asData()
     }
     
-    private func fetchFromDiskCache(diskCache : DiskCache, key: String, memoryCache : NSCache, failure fail : ((NSError?) -> ())?, success succeed : (T) -> ()) {
+    private func fetchFromDiskCache(diskCache : DiskCacheT, key: String, memoryCache : MemoryCacheT, failure fail : ((NSError?) -> ())?, success succeed : (T) -> ()) {
         diskCache.fetchData(key: key, failure: { error in
             if let block = fail {
                 if (error?.code == NSFileReadNoSuchFileError) {

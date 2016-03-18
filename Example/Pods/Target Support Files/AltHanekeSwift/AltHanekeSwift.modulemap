@@ -1,0 +1,6 @@
+framework module AltHaneke {
+  umbrella header "AltHanekeSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

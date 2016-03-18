@@ -1,9 +1,8 @@
-import Haneke
+import AltHaneke
 
 @objc public class ImageCache : NSObject {
     public typealias T = UIImage
     public typealias FetchType = ImageFetch
-    public let OriginalFormatName: String = HanekeGlobals.Cache.OriginalFormatName
 
     let cache : AltCache<T>
     public override init(){
@@ -15,11 +14,20 @@ import Haneke
         self.cache = AltCache<T>(name: name)
     }
 
-    public func set(value value: T, key: String, formatName: String = HanekeGlobals.Cache.OriginalFormatName, success succeed: ((T) -> ())? = nil) {
+    public func cachePath(formatName: String) -> String{
+        return self.cache.cachePath(formatName)
+    }
+
+    public func addFormat(name name: String, diskCapacity : UInt64 = UINT64_MAX, transform: ((T) -> (T))? = nil) {
+        let format = Format<T>(name: name, diskCapacity: diskCapacity, transform: transform)
+        return self.cache.addFormat(format)
+    }
+
+    public func set(value value: T, key: String, formatName: String, success succeed: ((T) -> ())? = nil) {
         self.cache.set(value: value, key: key, formatName: formatName, success: succeed)
     }
 
-    public func remove(key key: String, formatName: String = HanekeGlobals.Cache.OriginalFormatName) {
+    public func remove(key key: String, formatName: String) {
         self.cache.remove(key: key, formatName: formatName)
     }
 
@@ -27,12 +35,12 @@ import Haneke
         self.cache.removeAll()
     }
 
-    public func fetch(key key: String, formatName: String = HanekeGlobals.Cache.OriginalFormatName, failure fail : FetchType.Failer? = nil, success succeed : FetchType.Succeeder? = nil) -> FetchType {
+    public func fetch(key key: String, formatName: String, failure fail : FetchType.Failer? = nil, success succeed : FetchType.Succeeder? = nil) -> FetchType {
         let fetch = self.cache.fetch(key: key, formatName: formatName, failure: fail, success: succeed)
         return FetchType(fetch: fetch);
     }
 
-    public func fetch(URL URL : NSURL, formatName: String = HanekeGlobals.Cache.OriginalFormatName,  failure fail : FetchType.Failer? = nil, success succeed : FetchType.Succeeder? = nil) -> FetchType {
+    public func fetch(URL URL : NSURL, formatName: String,  failure fail : FetchType.Failer? = nil, success succeed : FetchType.Succeeder? = nil) -> FetchType {
         let fetch = self.cache.fetch(URL: URL, formatName: formatName, failure: fail, success: succeed)
         return FetchType(fetch: fetch);
     }
@@ -44,7 +52,7 @@ import Haneke
     public typealias Failer = (NSError?) -> ()
 
     let fetch : Fetch<T>
-    public  init(fetch: Fetch<T>){
+    public init(fetch: Fetch<T>){
         self.fetch = fetch
     }
     public func onSuccess(onSuccess: Succeeder) -> Self {

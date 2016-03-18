@@ -15,5 +15,11 @@
 @end
 
 @interface RACCache : NSObject<RACCache>
-
+- (instancetype)initWithName:(NSString*)name;
+- (instancetype)initWithName:(NSString*)name diskCapacity:(uint64_t)diskCapacity NS_DESIGNATED_INITIALIZER;
+- (RACSignal*)objectForKey:(NSString *)key;
+- (void)remove:(NSString*)key;
+- (void)removeAll;
+- (void)setObject:(id<NSCoding>)object forKey:(NSString *)key;
+- (RACSignal*)fetchURLSignal:(NSURL*)url;
 @end
