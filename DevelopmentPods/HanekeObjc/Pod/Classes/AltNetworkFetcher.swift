@@ -61,9 +61,10 @@ public class AltNetworkFetcher<T : DataConvertible> : Fetcher<T> {
     
     var cancelled = false
 
-    public  func fetch(failure fail : ((NSError?) -> ()),
-                            success succeed : (T.Result) -> (),
-                            progress: ((NSProgress) -> ())? = nil)
+    public var progress: ((NSProgress) -> ())? = nil
+
+    public override func fetch(failure fail : ((NSError?) -> ()),
+                            success succeed : (T.Result) -> ())
     {
 
         self.cancelled = false
@@ -75,7 +76,7 @@ public class AltNetworkFetcher<T : DataConvertible> : Fetcher<T> {
         request?.progress { [weak request] bytesRead, totalBytesRead, totalBytesExpectedToRead in
 
             if let request = request {
-                progress?(request.progress)
+                self.progress?(request.progress)
             }
         }
         request?.response { [weak self] request, response, data, error in
