@@ -42,7 +42,11 @@ public class NetworkManager
         for any ad hoc requests.
     */
     public static let sharedInstance: Manager? = {
-        return Manager.init(session: NSURLSession.sharedSession(), delegate:Manager.SessionDelegate())
+        let delegate = Manager.SessionDelegate()
+        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+
+        return Manager.init(session: session, delegate:delegate)
     }()
 }
 
