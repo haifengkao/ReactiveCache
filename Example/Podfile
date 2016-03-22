@@ -2,7 +2,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios,'8.0'
 use_frameworks!
 
-pod "HanekeObjc", :path => "../DevelopmentPods/HanekeObjc"
 target 'ReactiveCache_Example', :exclusive => true do
   pod "ReactiveCache", :path => "../"
 end

@@ -13,11 +13,13 @@
 #import "RACDisposable.h"
 #import "RACSignal+Operations.h"
 @import HanekeObjc;
-@import Haneke;
+@import AltHaneke;
+
 @interface RACCache()
 @property (strong) ImageCache* cache;
 @property (strong) NSCache* signalCache; //WARNING! NSCache seems to be broken in iOS 7 (https://gist.github.com/nicklockwood/8025593)
 @property (strong) NSString* formatName;
+@property (strong) NetworkManager* manager;
 @end
 @implementation RACCache
 
@@ -35,6 +37,7 @@
 {
     if (self = [super init])
     {
+        _manager = [NetworkManager sharedInstance];
         _cache = [[ImageCache alloc] initWithName:name];
         _signalCache = [[NSCache alloc] init];
         _formatName = @"rac_original";
@@ -42,6 +45,13 @@
     }
 
     return self;
+}
+
+- (void)setURLSessionConfiguration:(NSURLSessionConfiguration*)configuration
+{
+    if (configuration) {
+        self.manager = [[NetworkManager alloc] initWithConfiguration:configuration];
+    } 
 }
 
 - (void)remove:(NSString*)key

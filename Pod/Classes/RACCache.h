@@ -15,6 +15,7 @@
 @end
 
 @interface RACCache : NSObject<RACCache>
+- (void)setURLSessionConfiguration:(NSURLSessionConfiguration*)configuration;
 - (instancetype)initWithName:(NSString*)name;
 - (instancetype)initWithName:(NSString*)name diskCapacity:(uint64_t)diskCapacity NS_DESIGNATED_INITIALIZER;
 - (RACSignal*)objectForKey:(NSString *)key;
