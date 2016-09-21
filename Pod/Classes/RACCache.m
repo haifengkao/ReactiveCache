@@ -16,8 +16,8 @@
 @import AltHaneke;
 
 @interface RACCache()
-@property (strong) ImageCache* cache;
-@property (strong) NSCache* signalCache; //WARNING! NSCache seems to be broken in iOS 7 (https://gist.github.com/nicklockwood/8025593)
+@property (strong) ImageCache* cache;    // the disk cache
+@property (strong) NSCache* signalCache; // act as memory cache. WARNING! NSCache seems to be broken in iOS 7 (https://gist.github.com/nicklockwood/8025593)
 @property (strong) NSString* formatName;
 @property (strong) NetworkManager* manager;
 @end
