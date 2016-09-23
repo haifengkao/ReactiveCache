@@ -2,11 +2,11 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios,'8.0'
 use_frameworks!
 
-target 'ReactiveCache_Example', :exclusive => true do
+target 'ReactiveCache_Example' do
   pod "ReactiveCache", :path => "../"
 end
 
-target 'ReactiveCache_Tests', :exclusive => true do
+target 'ReactiveCache_Tests' do
   pod "ReactiveCache", :path => "../"
   pod "Kiwi"
 end
