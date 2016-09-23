@@ -7,19 +7,20 @@
 
 #import <Kiwi/Kiwi.h>
 #import "RACCache.h"
+#import "RACSignal.h"
 
 SPEC_BEGIN(RACCacheSpec)
 
 describe(@"RACCache", ^{
 
     let(testee, ^{ // Occurs before each enclosed "it"
-        return [[RACCache alloc] initWithName:@"original"];
+        return [[RACCache alloc] initWithName:@"original" cacheType:RACCacheImage ];
     });
     let(done, ^{ // Occurs before each enclosed "it"
         return @(0);
     });
     let(imageUrl, ^{ // Occurs before each enclosed "it"
-        return [NSURL URLWithString:@"http://www.bing.com/az/hprichbg/rb/AzoresPortugal_ROW13648393065_1920x1080.jpg"];
+        return [NSURL URLWithString:@"http://www.bing.com/s/a/hpc18.png"];
     });
     
     beforeAll(^{ // Occurs once
@@ -37,6 +38,7 @@ describe(@"RACCache", ^{
     specify(^{
         [[testee shouldNot] beNil];
     });
+    
     
     it(@"should download image from bing", ^{
         RACSignal* signal = [testee fetchURLSignal:imageUrl];

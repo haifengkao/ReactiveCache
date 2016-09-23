@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RACSignal.h"
+@class RACSignal;
+
+typedef NS_ENUM(NSUInteger, RACCacheType) {
+    RACCacheImage,
+    RACCacheData,
+};
 
 @protocol RACCache
 - (RACSignal*)objectForKey:(NSString *)key;
@@ -15,9 +20,8 @@
 @end
 
 @interface RACCache : NSObject<RACCache>
-- (void)setURLSessionConfiguration:(NSURLSessionConfiguration*)configuration;
-- (instancetype)initWithName:(NSString*)name;
-- (instancetype)initWithName:(NSString*)name diskCapacity:(uint64_t)diskCapacity NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithName:(NSString*)name  cacheType:(RACCacheType)cacheType;
+- (instancetype)initWithName:(NSString*)name cacheType:(RACCacheType)cacheType diskCapacity:(uint64_t)diskCapacity NS_DESIGNATED_INITIALIZER;
 - (RACSignal*)objectForKey:(NSString *)key;
 - (void)remove:(NSString*)key;
 - (void)removeAll;

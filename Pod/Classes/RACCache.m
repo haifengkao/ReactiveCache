@@ -6,7 +6,6 @@
 //
 //
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import "RACCache.h"
 #import "RACEXTSCope.h"
 #import "RACSubject.h"
@@ -14,44 +13,38 @@
 #import "RACSignal+Operations.h"
 @import HanekeObjc;
 @import AltHaneke;
+#import "RACSignal.h"
 
 @interface RACCache()
-@property (strong) ImageCache* cache;    // the disk cache
-@property (strong) NSCache* signalCache; // act as memory cache. WARNING! NSCache seems to be broken in iOS 7 (https://gist.github.com/nicklockwood/8025593)
+@property (strong) id cache;    // the disk cache
 @property (strong) NSString* formatName;
-@property (strong) NetworkManager* manager;
 @end
 @implementation RACCache
 
 - (instancetype)init
 {
-    return [self initWithName:@"rac_original"];
+    return [self initWithName:@"rac_original" cacheType:RACCacheData];
 }
 
-- (instancetype)initWithName:(NSString*)name
+- (instancetype)initWithName:(NSString*)name cacheType:(RACCacheType)cacheType
 {
-    return [self initWithName:name diskCapacity:UINT64_MAX];
+    return [self initWithName:name cacheType:cacheType diskCapacity:UINT64_MAX];
 }
 
-- (instancetype)initWithName:(NSString*)name diskCapacity:(uint64_t)diskCapacity
+- (instancetype)initWithName:(NSString*)name cacheType:(RACCacheType)cacheType diskCapacity:(uint64_t)diskCapacity
 {
     if (self = [super init])
     {
-        _manager = [NetworkManager sharedInstance];
-        _cache = [[ImageCache alloc] initWithName:name];
-        _signalCache = [[NSCache alloc] init];
+        if (cacheType == RACCacheImage) {
+            _cache = [[ImageCache alloc] initWithName:name];
+        } else {
+            _cache = [[DataCache alloc] initWithName:name];
+        }
         _formatName = @"rac_original";
         [_cache addFormatWithName:_formatName diskCapacity:diskCapacity transform: nil];
     }
 
     return self;
-}
-
-- (void)setURLSessionConfiguration:(NSURLSessionConfiguration*)configuration
-{
-    if (configuration) {
-        self.manager = [[NetworkManager alloc] initWithConfiguration:configuration];
-    } 
 }
 
 - (void)remove:(NSString*)key
@@ -69,14 +62,8 @@
     NSParameterAssert(key);
     if (!key) { return nil; }
 
-    RACSignal* cachedSignal = [self.signalCache objectForKey:key];
-    if (cachedSignal) {
-        // we will put the same ongoing http requests together to save some bandwidth
-        return cachedSignal;
-    }
-
     @weakify(self);
-    RACSignal* signal = [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber)
+    RACSignal* signal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber)
     {
         @strongify(self);
         [self.cache fetchWithKey:key 
@@ -95,15 +82,7 @@
         }];
         
     }] 
-    replayLazily] 
-    finally: ^(){
-        @strongify(self);
-        [self.signalCache removeObjectForKey:key];
-    }]; 
-
-    if (signal) {
-        [self.signalCache setObject:signal forKey:key];
-    } 
+    replayLazily];
 
     return signal;
 }
@@ -126,14 +105,8 @@
         return nil;
     }
 
-    RACSignal* cachedSignal = [self.signalCache objectForKey:key];
-    if (cachedSignal) {
-        // we will put the same ongoing http requests together to save some bandwidth
-        return cachedSignal;
-    }
-
     @weakify(self);
-    RACSignal* signal = [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber)
+    RACSignal* signal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber)
     {
         @strongify(self);
         id fetch = [self.cache fetchWithURL:url
@@ -152,15 +125,7 @@
         }];
         
     }] 
-    replayLazily] 
-    finally: ^(){
-        @strongify(self);
-        [self.signalCache removeObjectForKey:key];
-    }]; 
-
-    if (signal) {
-        [self.signalCache setObject:signal forKey:key];
-    } 
+    replayLazily];
 
     return signal;
 }
