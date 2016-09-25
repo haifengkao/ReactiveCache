@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, RACCacheType) {
 @end
 
 @interface RACCache : NSObject<RACCache>
-- (instancetype)initWithName:(NSString*)name  cacheType:(RACCacheType)cacheType;
+- (instancetype)initWithName:(NSString*)name cacheType:(RACCacheType)cacheType;
 - (instancetype)initWithName:(NSString*)name cacheType:(RACCacheType)cacheType diskCapacity:(uint64_t)diskCapacity NS_DESIGNATED_INITIALIZER;
 - (RACSignal*)objectForKey:(NSString *)key;
 - (void)remove:(NSString*)key;
