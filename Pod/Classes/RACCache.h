@@ -9,17 +9,12 @@
 #import <Foundation/Foundation.h>
 @class RACSignal;
 
-typedef NS_ENUM(NSUInteger, RACCacheType) {
-    RACCacheImage,
-    RACCacheData,
-};
-
 @protocol RACCache
 // get the object from the cache
 // will return error if the object is not found
 - (RACSignal*)objectForKey:(NSString *)key;
 // put the object in the cache
-- (void)setObject:(id<NSCoding>)object forKey:(NSString *)key;
+- (void)setObject:(NSObject<NSCoding>*)object forKey:(NSString *)key;
 - (void)remove:(NSString*)key;
 - (void)removeAll;
 
@@ -32,11 +27,8 @@ typedef NS_ENUM(NSUInteger, RACCacheType) {
 @end
 
 @interface RACCache : NSObject<RACCache>
-- (instancetype)initWithName:(NSString*)name cacheType:(RACCacheType)cacheType;
-- (instancetype)initWithName:(NSString*)name cacheType:(RACCacheType)cacheType diskCapacity:(uint64_t)diskCapacity NS_DESIGNATED_INITIALIZER;
-- (void)setObject:(id<NSCoding>)object forKey:(NSString *)key;
-- (RACSignal*)objectForKey:(NSString *)key;
-- (void)remove:(NSString*)key;
-- (void)removeAll;
+@property (strong) id cache;    // the disk cache
+@property (strong) NSString* formatName;
+
 - (RACSignal*)fetchURLSignal:(NSURL*)url;
 @end

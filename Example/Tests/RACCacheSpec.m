@@ -6,15 +6,15 @@
 //
 
 #import <Kiwi/Kiwi.h>
-#import "RACCache.h"
+#import "RACImageCache.h"
 #import "RACSignal.h"
 
-SPEC_BEGIN(RACCacheSpec)
+SPEC_BEGIN(RACImageCacheSpec)
 
-describe(@"RACCache", ^{
+describe(@"RACImageCache", ^{
 
     let(testee, ^{ // Occurs before each enclosed "it"
-        return [[RACCache alloc] initWithName:@"original" cacheType:RACCacheImage ];
+        return [[RACImageCache alloc] initWithName:@"original"];
     });
     let(done, ^{ // Occurs before each enclosed "it"
         return @(0);
