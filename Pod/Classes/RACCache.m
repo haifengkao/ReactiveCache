@@ -31,6 +31,16 @@
     return [self initWithName:name cacheType:cacheType diskCapacity:UINT64_MAX];
 }
 
+
+/** 
+  * craete new cache
+  * 
+  * @param name cache folder name
+  * @param cacheType complicated
+  * @param diskCapacity disk capacity in bytes
+  * 
+  * @return return value description
+  */
 - (instancetype)initWithName:(NSString*)name cacheType:(RACCacheType)cacheType diskCapacity:(uint64_t)diskCapacity
 {
     if (self = [super init])
