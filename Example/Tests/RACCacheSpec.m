@@ -39,7 +39,6 @@ describe(@"RACCache", ^{
         [[testee shouldNot] beNil];
     });
     
-    
     it(@"should download image from bing", ^{
         RACSignal* signal = [testee fetchURLSignal:imageUrl];
         [signal subscribeNext:^(UIImage* image) {

@@ -16,6 +16,7 @@ typedef NS_ENUM(NSUInteger, RACCacheType) {
 
 @protocol RACCache
 // get the object from the cache
+// will return error if the object is not found
 - (RACSignal*)objectForKey:(NSString *)key;
 // put the object in the cache
 - (void)setObject:(id<NSCoding>)object forKey:(NSString *)key;
@@ -24,6 +25,7 @@ typedef NS_ENUM(NSUInteger, RACCacheType) {
 
 @optional
 // get the tuple (object, object attributes) from the cache
+// will return error if the object is not found
 - (RACSignal*)objectForKeyExt:(NSString *)key;
 // return the cache size in bytes
 - (double)cacheSize;
