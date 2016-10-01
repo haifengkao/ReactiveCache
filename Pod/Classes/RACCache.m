@@ -60,7 +60,7 @@
     return signal;
 }
 
-- (void)setObject:(id<NSCoding>)object forKey:(NSString *)key
+- (void)setObject:(NSObject<NSCoding>*)object forKey:(NSString *)key
 {
     NSParameterAssert(object);
     NSParameterAssert(key);
