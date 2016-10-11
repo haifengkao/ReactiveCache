@@ -30,5 +30,4 @@
 @property (strong) id cache;    // the disk cache
 @property (strong) NSString* formatName;
 
-- (RACSignal*)fetchURLSignal:(NSURL*)url;
 @end
