@@ -30,6 +30,8 @@ describe(@"RACImageCache", ^{
     });
     
     beforeEach(^{ // Occurs before each enclosed "it"
+        UIImage* img = [UIImage imageNamed:@"hpc18.png"];
+        [testee setObject:img forKey:imageUrl.absoluteString];
     });
     
     afterEach(^{ // Occurs after each enclosed "it"
@@ -37,17 +39,6 @@ describe(@"RACImageCache", ^{
     
     specify(^{
         [[testee shouldNot] beNil];
-    });
-    
-    it(@"should download image from bing", ^{
-        RACSignal* signal = [testee fetchURLSignal:imageUrl];
-        [signal subscribeNext:^(UIImage* image) {
-            NSAssert(image, @"should download image successfully");
-            done = @(1);
-        } error:^(NSError *error) {
-            NSLog(@"error: %@", error);
-        }];
-        [[expectFutureValue(done) shouldEventuallyBeforeTimingOutAfter(20.0)] beTrue];
     });
     
     it(@"should get the image from cache", ^{

@@ -23,6 +23,7 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		903048B85A4613CD156B1CBF /* Pods_ReactiveCache_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15821EF006A6F9E85D7864B0 /* Pods_ReactiveCache_Tests.framework */; };
 		F9A522E31C983A8F00FF15DD /* RACCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A522E21C983A8F00FF15DD /* RACCacheSpec.m */; };
+		F9BFA6B51DACD03E0097F085 /* hpc18.png in Resources */ = {isa = PBXBuildFile; fileRef = F9BFA6B31DACD0100097F085 /* hpc18.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		B4C22C09CECE2A0188BCA0B4 /* Pods-ReactiveCache_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveCache_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactiveCache_Example/Pods-ReactiveCache_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F6BB4DAE4FBBB59B4C6CF627 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A522E21C983A8F00FF15DD /* RACCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RACCacheSpec.m; sourceTree = "<group>"; };
+		F9BFA6B31DACD0100097F085 /* hpc18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hpc18.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F9BFA6B31DACD0100097F085 /* hpc18.png */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				F9A522E21C983A8F00FF15DD /* RACCacheSpec.m */,
 			);
@@ -278,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9BFA6B51DACD03E0097F085 /* hpc18.png in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
