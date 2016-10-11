@@ -84,14 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AltHanekeSwift/AltHaneke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HanekeObjc/HanekeObjc.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReactiveCache/ReactiveCache.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReactiveCocoa/ReactiveCocoa.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
   install_framework "$BUILT_PRODUCTS_DIR/AltHanekeSwift/AltHaneke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HanekeObjc/HanekeObjc.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReactiveCache/ReactiveCache.framework"

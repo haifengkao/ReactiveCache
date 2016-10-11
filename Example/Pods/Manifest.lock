@@ -1,11 +1,9 @@
 PODS:
-  - Alamofire (3.5.0)
   - AltHanekeSwift (0.10.10)
-  - HanekeObjc (0.12.0):
-    - Alamofire
+  - HanekeObjc (0.13.0):
     - AltHanekeSwift
   - Kiwi (2.4.0)
-  - ReactiveCache (0.12.0):
+  - ReactiveCache (0.13.0):
     - HanekeObjc
     - ReactiveCocoa (~> 2.0)
   - ReactiveCocoa (2.5):
@@ -25,11 +23,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
   AltHanekeSwift: 2e7770c1fdc29de812f8c0d143947d29e24dcaed
-  HanekeObjc: b2de7de4f48d0ded4f90b6474c828ef3869d47ac
+  HanekeObjc: e34cae5aa3d3ae4fdfa36b63ec8f9219f178992b
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  ReactiveCache: 51c18f76286b1b3cd60ee5998cc3c1858431b34a
+  ReactiveCache: c5ab852ff52f19659350f9e7631525c9c5fd340f
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
 PODFILE CHECKSUM: 55fe91da08ce4947bd6393a5db3cdb79d1f67913
