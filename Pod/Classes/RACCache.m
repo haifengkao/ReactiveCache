@@ -25,9 +25,9 @@
     [self.cache removeWithKey:key formatName:self.formatName];
 }
 
-- (void)removeAll 
+- (void)removeAll:(void(^)())completion
 {
-    return [self.cache removeAll];
+    return [self.cache removeAll:completion];
 }
 
 - (RACSignal*)objectForKey:(NSString *)key

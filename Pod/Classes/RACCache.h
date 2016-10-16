@@ -16,7 +16,7 @@
 // put the object in the cache
 - (void)setObject:(NSObject<NSCoding>*)object forKey:(NSString *)key;
 - (void)remove:(NSString*)key;
-- (void)removeAll;
+- (void)removeAll:(void(^)())completion;
 
 @optional
 // get the tuple (object, object attributes) from the cache
