@@ -31,8 +31,8 @@ import AltHaneke
         self.cache.remove(key: key, formatName: formatName)
     }
 
-    public func removeAll() {
-        self.cache.removeAll()
+    public func removeAll(completion: (() -> ())? = nil) {
+        self.cache.removeAll(completion)
     }
 
     public func fetch(key key: String, formatName: String, failure fail : FetchType.Failer? = nil, success succeed : FetchType.Succeeder? = nil) -> FetchType {
