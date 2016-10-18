@@ -30,6 +30,18 @@
     return [self.cache removeAll:completion];
 }
 
+
+/** 
+  * Return an object in cache
+  *
+  * will send error when the object is not found
+  * the returned signal will cache the result
+  * so multiple subscription will not trigger multiple read
+  * 
+  * @param key the cache key
+  * 
+  * @return return a signal that will send the object which corresponds to the cache type (RACImageCache will send UIImage)
+  */
 - (RACSignal*)objectForKey:(NSString *)key
 {
     NSParameterAssert(key);
@@ -45,7 +57,7 @@
                            [subscriber sendError:error];
                         }
                         success:^(id obj){
-                            [subscriber sendNext: obj];
+                            [subscriber sendNext:obj];
                             [subscriber sendCompleted];
                         }
         ];
