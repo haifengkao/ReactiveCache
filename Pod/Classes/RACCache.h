@@ -10,7 +10,8 @@
 @class RACSignal;
 
 @protocol RACCache
-// get the object from the cache
+// get the ObjectType* object from the cache
+// the ObjectType depends on the Cache (ImageCache will return UIImage*)
 // will return error if the object is not found
 - (RACSignal*)objectForKey:(NSString *)key;
 // put the object in the cache
@@ -19,7 +20,7 @@
 - (void)removeAll:(void(^)())completion;
 
 @optional
-// get the tuple (object, object attributes) from the cache
+// get the tuple (ObjectType* object, NSDictionary* object_attributes) from the cache
 // will return error if the object is not found
 - (RACSignal*)objectForKeyExt:(NSString *)key;
 // return the cache size in bytes
