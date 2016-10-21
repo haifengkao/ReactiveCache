@@ -9,6 +9,7 @@
 #import "RACImageCache.h"
 #import "RACSignal.h"
 #import "RACSignal+Operations.h"
+@import AltHaneke; // for image decompress
 
 SPEC_BEGIN(RACImageCacheSpec)
 
@@ -76,6 +77,17 @@ describe(@"RACImageCache", ^{
                 done = @(1);
             }];
         [[expectFutureValue(done) shouldEventually] beTrue];
+    });
+});
+
+describe(@"UIImage extension", ^{
+    let(img, ^{ // Occurs before each enclosed "it"
+        return [UIImage imageNamed:@"hpc18.png"];
+    });
+    
+    it(@"should decompress image", ^{
+        UIImage* decompressed = [img hnk_decompressedImage];
+        [[decompressed shouldNot] beNil];
     });
 });
 
