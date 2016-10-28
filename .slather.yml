@@ -2,4 +2,14 @@
 #
 coverage_service: coveralls
 xcodeproj: Example/ReactiveCache.xcodeproj
-source_directory: Pod/Classes
+workspace: Example/ReactiveCache.xcworkspace
+scheme: ReactiveCache-Example
+
+# cocoapods 1.0 changes the Pod/Classes to ReactiveCache/classes
+source_directory: ReactiveCache/Classes
+
+# for slather to choose the correct source code %
+binary_basename: ReactiveCache
+
+# single command for debugging
+# slather coverage -s --workspace Example/ReactiveCache.xcworkspace --scheme ReactiveCache-Example --binary-basename ReactiveCache
