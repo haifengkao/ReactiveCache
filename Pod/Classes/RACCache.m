@@ -30,7 +30,6 @@
     return [self.cache removeAll:completion];
 }
 
-
 /** 
   * Return an object in cache
   *
