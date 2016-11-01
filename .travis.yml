@@ -7,6 +7,7 @@ language: objective-c
 install:
   # too slow
   #- bundle exec pod repo update --silent
+  - pod repo update # to fix "Unable to satisfy the following requirements" errors
   - pod install --project-directory=Example
 
 script:
