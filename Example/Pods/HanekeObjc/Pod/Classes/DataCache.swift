@@ -18,6 +18,10 @@ import AltHaneke
         return self.cache.cachePath(formatName)
     }
 
+    public func pathForKey(key: String, formatName: String) -> String {
+        return self.cache.pathForKey(key, formatName: formatName);
+    }
+
     public func addFormat(name name: String, diskCapacity : UInt64 = UINT64_MAX, transform: ((T) -> (T))? = nil) {
         let format = Format<T>(name: name, diskCapacity: diskCapacity, transform: transform)
         return self.cache.addFormat(format)

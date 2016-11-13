@@ -16,6 +16,16 @@ public class AltCache<T: DataConvertible where T.Result == T, T : DataRepresenta
         return ""
     }
 
+    public func pathForKey(key: String, formatName: String) -> String {
+        if let (_, _, diskCache) = self.formats[formatName] {
+           return diskCache.pathForKey(key)
+        } else {
+           assert(false, "the format name is invalid")
+        }
+        
+        return ""
+    }
+
     // path the original Cache.swift's removeAll
     public override func removeAll(completion: (() -> ())? = nil) {
         let group = dispatch_group_create();
