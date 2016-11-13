@@ -53,6 +53,12 @@ describe(@"RACImageCache", ^{
     specify(^{
         [[testee shouldNot] beNil];
     });
+
+    it(@"should get the image path from cache", ^{
+        NSURL* url = [testee urlForKey:imageUrl.absoluteString];
+
+        [[expectFutureValue(url) shouldNot] beNil];
+    });
     
     it(@"should get the image from cache", ^{
         RACSignal* signal = [testee objectForKey:imageUrl.absoluteString];

@@ -31,4 +31,5 @@
 @property (strong) id cache;    // the disk cache
 @property (strong) NSString* formatName;
 
+- (NSURL*)urlForKey:(NSString*)key;
 @end

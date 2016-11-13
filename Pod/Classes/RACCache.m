@@ -31,6 +31,16 @@
 }
 
 /** 
+  * get the actual file url for the specfified key
+  * 
+  */
+- (NSURL*)urlForKey:(NSString*)key;
+{
+    NSString* path = [self.cache pathForKey:key formatName:self.formatName];
+    return [NSURL fileURLWithPath:path isDirectory:NO relativeToURL:nil];
+} 
+
+/** 
   * Return an object in cache
   *
   * will send error when the object is not found
