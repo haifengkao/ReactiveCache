@@ -9,6 +9,7 @@
 #import "RACImageCache.h"
 #import "RACSignal.h"
 #import "RACSignal+Operations.h"
+#import "RACTuple.h"
 @import AltHaneke; // for image decompress
 
 SPEC_BEGIN(RACImageCacheSpec)
@@ -38,6 +39,10 @@ describe(@"RACImageCache", ^{
         
         UIImage* img = [UIImage imageNamed:@"hpc18.png"];
         [testee setObject:img forKey:imageUrl.absoluteString];
+
+        // it takes some time (different thread) to set the image
+        NSAssert([NSThread isMainThread], @"Pass only guaranteed to work in main thread");
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]]; //wait for 0.1 second
     });
     
     afterEach(^{ // Occurs after each enclosed "it"
@@ -66,6 +71,23 @@ describe(@"RACImageCache", ^{
         // it is possible that objectForKey is fired before the object is set
         [signal subscribeNext:^(UIImage* image) {
             NSAssert(image, @"should get the cached image successfully");
+            done = @(1);
+        } error:^(NSError *error) {
+            [[error should] beNil];
+        }];
+
+        [[expectFutureValue(done) shouldEventuallyBeforeTimingOutAfter(20000)] beTrue];
+    });
+
+    it(@"should get the file attributes from the cache", ^{
+        RACSignal* signal = [testee objectForKeyEx:imageUrl.absoluteString];
+        // setObject is on another thread
+        // it is possible that objectForKey is fired before the object is set
+        [signal subscribeNext:^(RACTuple* tuple) {
+            RACTupleUnpack(UIImage* image, NSDictionary* attributes) = tuple;
+            NSAssert(image, @"should get the cached image successfully");
+            [[image shouldNot] beNil];
+            [[attributes[NSFileSize] should] beGreaterThan:@(0)];
             done = @(1);
         } error:^(NSError *error) {
             [[error should] beNil];

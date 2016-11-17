@@ -22,7 +22,7 @@
 @optional
 // get the tuple (ObjectType* object, NSDictionary* object_attributes) from the cache
 // will return error if the object is not found
-- (RACSignal*)objectForKeyExt:(NSString *)key;
+- (RACSignal*)objectForKeyEx:(NSString *)key;
 // return the cache size in bytes
 - (double)cacheSize;
 @end

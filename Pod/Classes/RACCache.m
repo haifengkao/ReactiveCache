@@ -11,6 +11,7 @@
 #import "RACSubject.h"
 #import "RACDisposable.h"
 #import "RACSignal+Operations.h"
+#import "RACTuple.h"
 @import HanekeObjc;
 @import AltHaneke;
 #import "RACSignal.h"
@@ -19,6 +20,16 @@
 @end
 
 @implementation RACCache
+
++ (NSError*)errorNotFound
+{
+    static NSError* notFound = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        notFound = [NSError errorWithDomain:@"ReactiveCache" code:1 userInfo:@{NSLocalizedDescriptionKey:@"not in cache"}];
+    });
+    return notFound;
+}
 
 - (void)remove:(NSString*)key
 {
@@ -54,7 +65,7 @@
 - (RACSignal*)objectForKey:(NSString *)key
 {
     NSParameterAssert(key);
-    if (!key) { return nil; }
+    if (!key) { return [RACSignal error:[[self class] errorNotFound]]; } // nothing to do
 
     @weakify(self);
     RACSignal* signal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber)
@@ -79,6 +90,32 @@
     replayLazily];
 
     return signal;
+}
+
+/** 
+  * return the addition File Attribute Keys of the cached object
+  * 
+  */
+- (RACSignal*)objectForKeyEx:(NSString*)key
+{
+    NSParameterAssert(key);
+    if (!key) { return [RACSignal error:[[self class] errorNotFound]]; } // nothing to do
+
+    RACSignal* signal = [self objectForKey:key];
+    @weakify(self);
+    return [signal flattenMap:^(id obj){
+        @strongify(self);
+        
+        NSURL* url = [self urlForKey:key];
+        NSDictionary* attributes = nil;
+        if ([url isFileURL]) {
+            NSError* error = nil;
+            attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:&error];
+            NSCAssert(!error, @"what if there is an error?");
+        } 
+
+        return [RACSignal return:RACTuplePack(obj, attributes)];
+    }];
 }
 
 - (void)setObject:(NSObject<NSCoding>*)object forKey:(NSString *)key
