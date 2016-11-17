@@ -29,7 +29,7 @@
 
 @interface RACCache : NSObject<RACCache>
 @property (strong) id cache;    // the disk cache
-@property (strong) NSString* formatName;
+@property (copy) NSString* formatName;
 
 - (NSURL*)urlForKey:(NSString*)key;
 @end
