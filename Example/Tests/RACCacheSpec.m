@@ -65,6 +65,22 @@ describe(@"RACImageCache", ^{
         [[expectFutureValue(url) shouldNot] beNil];
     });
     
+    it(@"should get the cache size", ^{
+        RACSignal* signal = [testee objectForKey:imageUrl.absoluteString];
+        // setObject is on another thread
+        // it is possible that objectForKey is fired before the object is set
+        [signal subscribeNext:^(UIImage* image) {
+            NSAssert(image, @"should get the cached image successfully");
+            done = @(1);
+        } error:^(NSError *error) {
+            [[error should] beNil];
+        }];
+        
+        
+        [[expectFutureValue(done) shouldEventuallyBeforeTimingOutAfter(20000)] beTrue];
+        [[@(testee.cacheSize) should] beGreaterThan:@(0)];
+    });
+    
     it(@"should get the image from cache", ^{
         RACSignal* signal = [testee objectForKey:imageUrl.absoluteString];
         // setObject is on another thread

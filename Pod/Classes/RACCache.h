@@ -32,4 +32,5 @@
 @property (copy) NSString* formatName;
 
 - (NSURL*)urlForKey:(NSString*)key;
+- (double)cacheSize;
 @end
