@@ -131,17 +131,7 @@
 
 - (double)cacheSize
 {
-    double size = 0.0;
-    NSString* path = [self.cache pathForKey:@"" formatName:self.formatName].stringByDeletingLastPathComponent;
-    NSFileManager* mgr = [NSFileManager defaultManager];
-    NSDirectoryEnumerator *dirEnum = [mgr enumeratorAtPath:path];
-    NSString *file;
-    while ((file = [dirEnum nextObject])) {
-        NSDictionary* dict = dirEnum.fileAttributes;
-        size += ((NSNumber*)dict[NSFileSize]).doubleValue;
-    }
-
-    return size;
+    return [self.cache sizeWithFormatName:self.formatName].doubleValue;
 }
 
 @end
