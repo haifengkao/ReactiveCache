@@ -4,9 +4,11 @@ use_frameworks!
 
 target 'ReactiveCache_Example' do
   pod "ReactiveCache", :path => "../"
+  #pod "HanekeObjc", :path => "../../HanekeObjc"
 end
 
 target 'ReactiveCache_Tests' do
   pod "ReactiveCache", :path => "../"
+  #pod "HanekeObjc", :path => "../../HanekeObjc"
   pod "Kiwi"
 end

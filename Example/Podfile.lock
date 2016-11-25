@@ -1,6 +1,6 @@
 PODS:
   - AltHanekeSwift (0.15.0)
-  - HanekeObjc (0.20.0):
+  - HanekeObjc (0.21.0):
     - AltHanekeSwift
   - Kiwi (2.4.0)
   - ReactiveCache (0.27.0):
@@ -24,11 +24,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AltHanekeSwift: 9675af55eff3f9455e01a3ece5799497a3148548
-  HanekeObjc: aba947a20d3f009e786581a1f2d1e2f70b5641da
+  HanekeObjc: 0ae0e1c4fd27dd03cd4f308bd8a051ce3e07b85d
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   ReactiveCache: 746a04a6b93149f71294bf79a5788e62cbb1b526
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
-PODFILE CHECKSUM: 55fe91da08ce4947bd6393a5db3cdb79d1f67913
+PODFILE CHECKSUM: 1c09f23cf35ad0cb63aad28ab63c04aec8741d5d
 
 COCOAPODS: 1.1.1

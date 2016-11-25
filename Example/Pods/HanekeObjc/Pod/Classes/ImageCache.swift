@@ -14,12 +14,35 @@ import AltHaneke
         self.cache = AltCache<T>(name: name)
     }
 
+    public func size(formatName: String) -> NSNumber{
+        let diskCache = self.diskCache(formatName: formatName)
+        if let diskCache = diskCache {
+            return NSNumber(value: diskCache.size)
+        }
+        return NSNumber(value: 0.0)
+    }
+
     public func cachePath(_ formatName: String) -> String{
-        return self.cache.cachePath(formatName)
+        let diskCache = self.diskCache(formatName: formatName)
+        if let diskCache = diskCache {
+            return diskCache.path
+        }
+        return ""
     }
 
     public func pathForKey(_ key: String, formatName: String) -> String {
-        return self.cache.pathForKey(key, formatName: formatName);
+        let diskCache = self.diskCache(formatName: formatName)
+        if let diskCache = diskCache {
+            return diskCache.path(forKey: key)
+        }
+        return ""
+    }
+
+    public func diskCache(formatName: String) -> AltDiskCache? { 
+        if let (_, _, diskCache) = self.cache.formats[formatName] {
+            return diskCache
+        }
+        return nil
     }
 
     public func addFormat(name: String, diskCapacity : UInt64 = UINT64_MAX, transform: ((T) -> (T))? = nil) {

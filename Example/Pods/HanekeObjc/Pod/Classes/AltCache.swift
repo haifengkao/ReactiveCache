@@ -6,26 +6,6 @@ open class AltCache<T: DataConvertible> : HanekeCache<T, AltDiskCache, NSCache<A
         super.init(name: name)
     }
 
-    open func cachePath(_ formatName: String) -> String {
-        if let (_, _, diskCache) = self.formats[formatName] {
-           return diskCache.path
-        } else {
-           assert(false, "the format name is invalid")
-        }
-        
-        return ""
-    }
-
-    open func pathForKey(_ key: String, formatName: String) -> String {
-        if let (_, _, diskCache) = self.formats[formatName] {
-            return diskCache.path(forKey: key)
-        } else {
-           assert(false, "the format name is invalid")
-        }
-        
-        return ""
-    }
-
     // path the original Cache.swift's removeAll
     open override func removeAll(_ completion: (() -> ())? = nil) {
         let group = DispatchGroup();
