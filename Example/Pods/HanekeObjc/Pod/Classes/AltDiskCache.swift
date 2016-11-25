@@ -3,23 +3,21 @@ import AltHaneke
 extension String {
     
     func escapedFilename() -> String {
-        let originalString = self as NSString as CFString
-        let charactersToLeaveUnescaped = " \\" as NSString as CFString // TODO: Add more characters that are valid in paths but not in URLs
-        let legalURLCharactersToBeEscaped = "/:" as NSString as CFString
-        let encoding = CFStringBuiltInEncodings.UTF8.rawValue
-        let escapedPath = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, originalString, charactersToLeaveUnescaped, legalURLCharactersToBeEscaped, encoding)
-        return escapedPath as NSString as String
+        return [ "\0":"%00", ":":"%3A", "/":"%2F" ]
+            .reduce(self.components(separatedBy: "%").joined(separator: "%25")) {
+                str, m in str.components(separatedBy: m.0).joined(separator: m.1)
+        }
     }
     
     func MD5String() -> String {
-        guard let data = self.dataUsingEncoding(NSUTF8StringEncoding) else {
+        guard let data = self.data(using: String.Encoding.utf8) else {
             return self
         }
         
-        let MD5Calculator = MD5(data)
+        let MD5Calculator = MD5(Array(data))
         let MD5Data = MD5Calculator.calculate()
-        let resultBytes = UnsafeMutablePointer<CUnsignedChar>(MD5Data.bytes)
-        let resultEnumerator = UnsafeBufferPointer<CUnsignedChar>(start: resultBytes, count: MD5Data.length)
+        let resultBytes = UnsafeMutablePointer<CUnsignedChar>(mutating: MD5Data)
+        let resultEnumerator = UnsafeBufferPointer<CUnsignedChar>(start: resultBytes, count: MD5Data.count)
         let MD5String = NSMutableString()
         for c in resultEnumerator {
             MD5String.appendFormat("%02x", c)
@@ -29,9 +27,12 @@ extension String {
     
     func MD5Filename() -> String {
         let MD5String = self.MD5String()
-        let pathExtension = (self as NSString).pathExtension
+        
+        // NSString.pathExtension alone could return a query string, which can lead to very long filenames.
+        let pathExtension = URL(string: self)?.pathExtension ?? (self as NSString).pathExtension
+        
         if pathExtension.characters.count > 0 {
-            return (MD5String as NSString).stringByAppendingPathExtension(pathExtension) ?? MD5String
+            return (MD5String as NSString).appendingPathExtension(pathExtension) ?? MD5String
         } else {
             return MD5String
         }
@@ -39,13 +40,13 @@ extension String {
     
 }
 
-public class AltDiskCache: DiskCache {
-    public override func pathForKey(key: String) -> String {
+open class AltDiskCache: DiskCache {
+    open override func path(forKey key: String) -> String {
         // let escapedFilename = key.escapedFilename()
         //let filename = escapedFilename.characters.count < Int(NAME_MAX) ? escapedFilename : key.MD5Filename()
         // HF: always use MD5
         let filename = key.MD5Filename()
-        let keyPath = (super.path as NSString).stringByAppendingPathComponent(filename)
+        let keyPath = (super.path as NSString).appendingPathComponent(filename)
         return keyPath
     }
 }

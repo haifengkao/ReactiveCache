@@ -1,12 +1,12 @@
 import AltHaneke
 
-public class AltCache<T: DataConvertible where T.Result == T, T : DataRepresentable> : HanekeCache<T, AltDiskCache, NSCache> {
+open class AltCache<T: DataConvertible> : HanekeCache<T, AltDiskCache, NSCache<AnyObject, AnyObject>> where T.Result == T, T : DataRepresentable {
  
     public override init(name: String) {
         super.init(name: name)
     }
 
-    public func cachePath(formatName: String) -> String {
+    open func cachePath(_ formatName: String) -> String {
         if let (_, _, diskCache) = self.formats[formatName] {
            return diskCache.path
         } else {
@@ -16,9 +16,9 @@ public class AltCache<T: DataConvertible where T.Result == T, T : DataRepresenta
         return ""
     }
 
-    public func pathForKey(key: String, formatName: String) -> String {
+    open func pathForKey(_ key: String, formatName: String) -> String {
         if let (_, _, diskCache) = self.formats[formatName] {
-           return diskCache.pathForKey(key)
+            return diskCache.path(forKey: key)
         } else {
            assert(false, "the format name is invalid")
         }
@@ -27,18 +27,18 @@ public class AltCache<T: DataConvertible where T.Result == T, T : DataRepresenta
     }
 
     // path the original Cache.swift's removeAll
-    public override func removeAll(completion: (() -> ())? = nil) {
-        let group = dispatch_group_create();
+    open override func removeAll(_ completion: (() -> ())? = nil) {
+        let group = DispatchGroup();
         for (_, (_, memoryCache, diskCache)) in self.formats {
             memoryCache.removeAllObjects()
-            dispatch_group_enter(group)
+            group.enter()
             diskCache.removeAllData {
-                dispatch_group_leave(group)
+                group.leave()
             }
         }
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            let timeout = dispatch_time(DISPATCH_TIME_NOW, Int64(60 * NSEC_PER_SEC))
-            if dispatch_group_wait(group, timeout) != 0 {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
+            let timeout = DispatchTime.now() + Double(Int64(60 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC)
+            if group.wait(timeout: timeout) == DispatchTimeoutResult.timedOut {
                 Log.error("removeAll timed out waiting for disk caches")
             }
             // HF: remove the cache path will stop the cache from writing any other data
@@ -50,7 +50,7 @@ public class AltCache<T: DataConvertible where T.Result == T, T : DataRepresenta
             //     Log.error("Failed to remove path \(path)", error as NSError)
             // }
             if let completion = completion {
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     completion()
                 }
             }
