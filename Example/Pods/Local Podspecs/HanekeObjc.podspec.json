@@ -1,6 +1,6 @@
 {
   "name": "HanekeObjc",
-  "version": "0.16.0",
+  "version": "0.19.0",
   "summary": "Do you want to use HanekeSwift in your objective-c codes?",
   "description": "A swift wrapper for HanekeSwift to provide an objective-c compatible interface",
   "homepage": "https://github.com/haifengkao/HanekeObjc",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/haifengkao/HanekeObjc.git",
-    "tag": "0.16.0"
+    "tag": "0.19.0"
   },
   "platforms": {
     "ios": "8.0"

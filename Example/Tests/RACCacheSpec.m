@@ -59,6 +59,14 @@ describe(@"RACImageCache", ^{
         [[testee shouldNot] beNil];
     });
 
+    it(@"should use md5 as the filename", ^{
+
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]]; //wait for 0.1 second
+        NSURL* url = [testee urlForKey:@"hi.png"];
+        
+        [[url.lastPathComponent should] equal:@"2f74810068f5603a6f154eaa692316dc.png"];
+    });
+
     it(@"should get the image path from cache", ^{
         NSURL* url = [testee urlForKey:imageUrl.absoluteString];
 
