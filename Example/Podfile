@@ -5,10 +5,10 @@ use_frameworks!
 target 'ReactiveCache_Example' do
   pod "ReactiveCache", :path => "../"
   #pod "HanekeObjc", :path => "../../HanekeObjc"
-end
+  target 'ReactiveCache_Tests' do
+    inherit! :search_paths
+    pod "ReactiveCache", :path => "../"
 
-target 'ReactiveCache_Tests' do
-  pod "ReactiveCache", :path => "../"
-  #pod "HanekeObjc", :path => "../../HanekeObjc"
-  pod "Kiwi"
+    pod 'Kiwi'
+  end
 end

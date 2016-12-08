@@ -6,10 +6,10 @@
 //
 
 #import <Kiwi/Kiwi.h>
+@import ReactiveObjC;
 #import "RACImageCache.h"
-#import "RACSignal.h"
 #import "RACSignal+Operations.h"
-#import "RACTuple.h"
+
 @import AltHaneke; // for image decompress
 
 SPEC_BEGIN(RACImageCacheSpec)

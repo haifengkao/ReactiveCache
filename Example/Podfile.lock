@@ -5,14 +5,8 @@ PODS:
   - Kiwi (2.4.0)
   - ReactiveCache (0.27.0):
     - HanekeObjc
-    - ReactiveCocoa (~> 2.0)
-  - ReactiveCocoa (2.5):
-    - ReactiveCocoa/UI (= 2.5)
-  - ReactiveCocoa/Core (2.5):
-    - ReactiveCocoa/no-arc
-  - ReactiveCocoa/no-arc (2.5)
-  - ReactiveCocoa/UI (2.5):
-    - ReactiveCocoa/Core
+    - ReactiveObjC (~> 2.0)
+  - ReactiveObjC (2.1.0)
 
 DEPENDENCIES:
   - Kiwi
@@ -26,9 +20,9 @@ SPEC CHECKSUMS:
   AltHanekeSwift: 9675af55eff3f9455e01a3ece5799497a3148548
   HanekeObjc: 0ae0e1c4fd27dd03cd4f308bd8a051ce3e07b85d
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  ReactiveCache: 746a04a6b93149f71294bf79a5788e62cbb1b526
-  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  ReactiveCache: 0a38a4d6c4e7cd71ccc5a03a7a24426997d6f919
+  ReactiveObjC: 2edae120982d8e6d5407503a10edcfdd87eb8639
 
-PODFILE CHECKSUM: 1c09f23cf35ad0cb63aad28ab63c04aec8741d5d
+PODFILE CHECKSUM: ae44d51b508aba26ba4119c19bb14b5448dfcf4e
 
 COCOAPODS: 1.1.1
