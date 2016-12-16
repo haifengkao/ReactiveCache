@@ -32,5 +32,6 @@
 @property (copy) NSString* formatName;
 
 - (NSURL*)urlForKey:(NSString*)key;
-- (double)cacheSize;
+- (double)cacheSize; // faster method. It is the cached size managed by HanekeSwift. Inaccurate after some data has been removed
+- (double)cacheSizeRecomputed; // slower, but accurate method. it iterates through all the files in the cache's folder
 @end
