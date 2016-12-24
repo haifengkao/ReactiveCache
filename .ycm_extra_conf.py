@@ -120,6 +120,19 @@ def IncludeClangInXCToolChain(flags, working_directory):
     new_flags.append('-I'+includePath)
   return new_flags
 
+def FindDerivedDataPath( derivedDataPath, projectName ):
+  simulatorPaths = ['Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator/', # if you enable CodeCoverage, the framework of test target will be put in coverage folder, strange
+                    'Build/Products/Debug-iphonesimulator/']
+
+  # search ~/Library/Developer/Xcode/DerivedData/ to find <project_name>-dliwlpgcvwijijcdxarawwtrfuuh
+  derivedPath = sorted_ls(derivedDataPath)[::-1] # newest file first
+  for productPath in derivedPath:
+    if productPath.lower().startswith( projectName.lower() ):
+      for simulatorPath in simulatorPaths:
+        projectPath = os.path.join('', *[derivedDataPath, productPath, simulatorPath])
+        if (len(projectPath) > 0) and os.path.exists(projectPath):
+          return projectPath # the lastest product is what we want (really?)
+  return ''
 def IncludeFlagsOfFrameworkHeaders( flags, working_directory ):
   if not working_directory:
     return flags
@@ -127,8 +140,7 @@ def IncludeFlagsOfFrameworkHeaders( flags, working_directory ):
   new_flags = []
   path_flag = '-ProductFrameworkInclude'
   derivedDataPath = os.path.expanduser('~/Library/Developer/Xcode/DerivedData/')
-  simulatorPaths = ['Build/Intermediates/CodeCoverage/Products/Debug-iphonesimulator/', # if you enable CodeCoverage, the framework of test target will be put in coverage folder, strange
-                    'Build/Products/Debug-iphonesimulator/']
+
   # find the project name
   projectName = findProjectName(working_directory)
   if len(projectName) <= 0:
@@ -139,22 +151,17 @@ def IncludeFlagsOfFrameworkHeaders( flags, working_directory ):
     if not flag.startswith( path_flag ):
       new_flags.append(flag)
       continue
-    projectPath = ''
-    # search ~/Library/Developer/Xcode/DerivedData/ to find <project_name>-dliwlpgcvwijijcdxarawwtrfuuh
-    derivedPath = sorted_ls(derivedDataPath)[::-1] # newest file first
-    for productPath in derivedPath:
-      if productPath.lower().startswith( projectName.lower() ):
-        for simulatorPath in simulatorPaths:
-          projectPath = os.path.join('', *[derivedDataPath, productPath, simulatorPath])
-          if (len(projectPath) > 0) and os.path.exists(projectPath):
-            break # the lastest product is what we want (really?)
 
+    projectPath = FindDerivedDataPath( derivedDataPath, projectName )
     if (len(projectPath) <= 0) or not os.path.exists(projectPath):
       continue
 
     # iterate through all frameworks folders /Debug-iphonesimulator/xxx/xxx.framework
     for frameworkFolder in os.listdir(projectPath):
       frameworkPath = os.path.join('', projectPath, frameworkFolder)
+
+      if not os.path.isdir(frameworkPath):
+        continue
       # framwork folder '-F/Debug-iphonesimulator/<framework-name>'
       # solve <Kiwi/KiwiConfigurations.h> not found problem
       new_flags.append('-F'+frameworkPath)
@@ -298,7 +305,10 @@ def FlagsForFile( filename, **kwargs ):
     'do_cache': True
   }
 
+
 # if __name__ == "__main__":
+  # print (FlagsForFile(""))
+
   # flags = [
   # '-D__IPHONE_OS_VERSION_MIN_REQUIRED=70000',
   # '-x',
@@ -311,23 +321,9 @@ def FlagsForFile( filename, **kwargs ):
   # ]
 
   # print IncludeClangInXCToolChain(flags, DirectoryOfThisScript())
-
-# if __name__ == "__main__":
-  # flags = [
-  # '-D__IPHONE_OS_VERSION_MIN_REQUIRED=70000',
-  # '-x',
-  # 'objective-c',
-  # '-ProductFrameworkInclude',
-  # '-ProductFrameworkInclude',
-  # '-F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks',
-  # '-ISUB./Pods/Headers/Public',
-  # '-MMD',
-  # ]
-
   # print IncludeFlagsOfFrameworkHeaders( flags, DirectoryOfThisScript() )
 
-# if __name__ == '__main__':
-    # # res = subdirectory( DirectoryOfThisScript())
+  # # res = subdirectory( DirectoryOfThisScript())
   # flags = [
   # '-D__IPHONE_OS_VERSION_MIN_REQUIRED=70000',
   # '-x',
@@ -337,14 +333,10 @@ def FlagsForFile( filename, **kwargs ):
   # '-MMD',
   # ]
 
-  # print IncludeFlagsOfSubdirectory( flags, DirectoryOfThisScript() )
+  # print (IncludeFlagsOfSubdirectory( flags, DirectoryOfThisScript() ))
   # res = IncludeFlagsOfSubdirectory( flags, DirectoryOfThisScript() )
   # escaped = []
   # for flag in res:
     # if " " not in flag:
       # escaped.append(flag)
   # print ' '.join(escaped)
-
-
-
-
