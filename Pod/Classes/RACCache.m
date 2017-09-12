@@ -111,7 +111,10 @@
         if ([url isFileURL]) {
             NSError* error = nil;
             attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[url path] error:&error];
-            NSCAssert(!error, @"what if there is an error?");
+            if (error) {
+                // the file has been removed
+                return [RACSignal error:error];
+            } 
         } 
 
         return [RACSignal return:RACTuplePack(obj, attributes)];
