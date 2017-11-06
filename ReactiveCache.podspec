@@ -32,6 +32,6 @@ Pod::Spec.new do |s|
 #  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.dependency 'ReactiveObjC', '~> 2.0' # swift module needs all ReactiveCocoa headers
+  s.dependency 'ReactiveObjC' # swift module needs all ReactiveCocoa headers
   s.dependency 'HanekeObjc'
 end

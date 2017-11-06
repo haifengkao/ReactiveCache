@@ -19,7 +19,7 @@
   "source_files": "Pod/Classes/**/*",
   "dependencies": {
     "ReactiveObjC": [
-      "~> 2.0"
+
     ],
     "HanekeObjc": [
 
