@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.author           = { "Hai Feng Kao" => "haifeng@cocoaspice.in" }
   s.source           = { :git => "https://github.com/haifengkao/ReactiveCache.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0' # needs ios 9 [NSURL fileURLWithPath:path isDirectory:NO relativeToURL:nil]
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'

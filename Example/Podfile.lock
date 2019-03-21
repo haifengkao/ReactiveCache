@@ -12,17 +12,24 @@ DEPENDENCIES:
   - Kiwi
   - ReactiveCache (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AltHanekeSwift
+    - HanekeObjc
+    - Kiwi
+    - ReactiveObjC
+
 EXTERNAL SOURCES:
   ReactiveCache:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   AltHanekeSwift: 9675af55eff3f9455e01a3ece5799497a3148548
   HanekeObjc: 0ae0e1c4fd27dd03cd4f308bd8a051ce3e07b85d
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
-  ReactiveCache: c3c8e4c0c4222853fad4a1674caf6ba7167efa9b
+  ReactiveCache: 21e587384c919f2ff63caa82f012d067af5902b1
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
 
-PODFILE CHECKSUM: ae44d51b508aba26ba4119c19bb14b5448dfcf4e
+PODFILE CHECKSUM: 0c2f641d3f312ad68e349549f9f3f153dd6d70ac
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.6.1

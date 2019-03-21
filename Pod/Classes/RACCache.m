@@ -36,7 +36,7 @@
     [self.cache removeWithKey:key formatName:self.formatName];
 }
 
-- (void)removeAll:(void(^)())completion
+- (void)removeAll:(void(^)(void))completion
 {
     return [self.cache removeAll:completion];
 }
