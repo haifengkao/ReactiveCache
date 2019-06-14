@@ -71,7 +71,7 @@
     RACSignal* signal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber)
     {
         @strongify(self);
-        [self.cache fetchWithKey:key 
+        (void)[self.cache fetchWithKey:key 
                      formatName:self.formatName
                         failure:^(NSError* error){
                            [subscriber sendError:error];
