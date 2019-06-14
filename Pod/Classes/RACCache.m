@@ -129,7 +129,7 @@
 
     if (!object || !key ) { return; }
 
-    [self.cache setWithValue:object key:key formatName:self.formatName success:nil]; 
+    [self.cache setWithValue:(id)object key:key formatName:self.formatName success:nil]; 
 }
 
 - (double)cacheSize
