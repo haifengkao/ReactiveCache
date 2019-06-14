@@ -5,14 +5,41 @@
 //  Created by Hai Feng Kao on 2016/03/15.
 //
 
-#import <Kiwi/Kiwi.h>
+@import Kiwi;
 @import ReactiveObjC;
-#import "RACImageCache.h"
+@import ReactiveCache;
 #import "RACSignal+Operations.h"
 
 @import AltHaneke; // for image decompress
 
 SPEC_BEGIN(RACImageCacheSpec)
+
+describe(@"RACDataCache", ^{
+    let(testee, ^{ // Occurs before each enclosed "it"
+        return [[RACDataCache alloc] initWithName:@"original" diskCapacity:1000.0];
+    });
+    
+    let(done, ^{ // Occurs before each enclosed "it"
+        return @(0);
+    });
+    
+    it(@"should get the data", ^{
+        NSNumber* num = @(42);
+        [testee setObject:num forKey:@"key"];
+        
+        RACSignal* signal = [testee objectForKey:@"key"];
+        // setObject is on another thread
+        // it is possible that objectForKey is fired before the object is set
+        [signal subscribeNext:^(NSNumber* val) {
+            NSAssert(val, @"should get the cached nsnumber successfully");
+            done = @(1);
+        } error:^(NSError *error) {
+            [[error should] beNil];
+        }];
+        
+        [[expectFutureValue(done) shouldEventuallyBeforeTimingOutAfter(20000)] beTrue];
+    });
+});
 
 describe(@"RACImageCache", ^{
 
