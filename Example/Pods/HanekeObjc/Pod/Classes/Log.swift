@@ -27,12 +27,12 @@ struct Log {
     
     static func debug(_ message: @autoclosure () -> String, _ error: NSError? = nil) {
         #if DEBUG
-            log(.Debug, message, error)
+            log(.Debug, message(), error)
         #endif
     }
     
     static func error(_ message: @autoclosure () -> String, _ error: NSError? = nil) {
-        log(.Error, message, error)
+        log(.Error, message(), error)
     }
     
 }

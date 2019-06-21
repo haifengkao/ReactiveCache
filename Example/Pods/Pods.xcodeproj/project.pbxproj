@@ -2640,38 +2640,6 @@
 			};
 			name = Debug;
 		};
-		1CAAAC29D00B4E5AF16FA350C6243082 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 628916EA37932C42D2E07C91AA851938 /* HanekeObjc.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/HanekeObjc/HanekeObjc-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HanekeObjc/HanekeObjc-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HanekeObjc/HanekeObjc.modulemap";
-				PRODUCT_MODULE_NAME = HanekeObjc;
-				PRODUCT_NAME = HanekeObjc;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		326801819222BDEF767BF99FA72BF1DA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D89252294604A54E8CDF7CAE38FB53E4 /* Kiwi.xcconfig */;
@@ -2769,9 +2737,9 @@
 			};
 			name = Release;
 		};
-		8C8E036390DA200ECEA3257B752015D0 /* Release */ = {
+		85553EAF9A4BB607EB3E4FD8B060F80C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FCEBD5C970EE3418395AE71FB827758 /* ReactiveCache.xcconfig */;
+			baseConfigurationReference = C5FEA652E6DE32B36A31327AD16823AB /* AltHanekeSwift.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2782,24 +2750,54 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ReactiveCache/ReactiveCache-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ReactiveCache/ReactiveCache-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/AltHanekeSwift/AltHanekeSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AltHanekeSwift/AltHanekeSwift-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/ReactiveCache/ReactiveCache.modulemap";
-				PRODUCT_MODULE_NAME = ReactiveCache;
-				PRODUCT_NAME = ReactiveCache;
+				MODULEMAP_FILE = "Target Support Files/AltHanekeSwift/AltHanekeSwift.modulemap";
+				PRODUCT_MODULE_NAME = AltHaneke;
+				PRODUCT_NAME = AltHaneke;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
+		};
+		8FDFC43E827764431460975F4B67D1B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 628916EA37932C42D2E07C91AA851938 /* HanekeObjc.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/HanekeObjc/HanekeObjc-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HanekeObjc/HanekeObjc-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/HanekeObjc/HanekeObjc.modulemap";
+				PRODUCT_MODULE_NAME = HanekeObjc;
+				PRODUCT_NAME = HanekeObjc;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		95819EC56BB74E8F6E1CF364B8A11074 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2826,37 +2824,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A12ECBC2A6639BB6982FB0038E041F74 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5FEA652E6DE32B36A31327AD16823AB /* AltHanekeSwift.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AltHanekeSwift/AltHanekeSwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AltHanekeSwift/AltHanekeSwift-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/AltHanekeSwift/AltHanekeSwift.modulemap";
-				PRODUCT_MODULE_NAME = AltHaneke;
-				PRODUCT_NAME = AltHaneke;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -2923,6 +2890,38 @@
 			};
 			name = Release;
 		};
+		AB2B609C19B2E4B24DADBD83403A38A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FCEBD5C970EE3418395AE71FB827758 /* ReactiveCache.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ReactiveCache/ReactiveCache-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ReactiveCache/ReactiveCache-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ReactiveCache/ReactiveCache.modulemap";
+				PRODUCT_MODULE_NAME = ReactiveCache;
+				PRODUCT_NAME = ReactiveCache;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		C101866D0E221B794E8A2FE6DF152076 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1BDDF6A77587E277AAF20ED7F304CF9 /* Pods-ReactiveCache_Example.release.xcconfig */;
@@ -2950,6 +2949,38 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C22EC1EF8CE9CEC869EFA6C583F409BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5FEA652E6DE32B36A31327AD16823AB /* AltHanekeSwift.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AltHanekeSwift/AltHanekeSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AltHanekeSwift/AltHanekeSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/AltHanekeSwift/AltHanekeSwift.modulemap";
+				PRODUCT_MODULE_NAME = AltHaneke;
+				PRODUCT_NAME = AltHaneke;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2990,39 +3021,7 @@
 			};
 			name = Debug;
 		};
-		D28927DB23E00D0BDB970A0F8CDF28E5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5FEA652E6DE32B36A31327AD16823AB /* AltHanekeSwift.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/AltHanekeSwift/AltHanekeSwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/AltHanekeSwift/AltHanekeSwift-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/AltHanekeSwift/AltHanekeSwift.modulemap";
-				PRODUCT_MODULE_NAME = AltHaneke;
-				PRODUCT_NAME = AltHaneke;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D49AC9DB8291074FDAE65D1B95D2CAA7 /* Debug */ = {
+		DCD7C958FB39CC52DBC4F341294C3000 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5FCEBD5C970EE3418395AE71FB827758 /* ReactiveCache.xcconfig */;
 			buildSettings = {
@@ -3046,14 +3045,14 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		D5746FBB9E70FD85BECC07CED31302C8 /* Debug */ = {
+		E79EF616B3FFB04B106061E4DE31CE36 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 628916EA37932C42D2E07C91AA851938 /* HanekeObjc.xcconfig */;
 			buildSettings = {
@@ -3077,12 +3076,13 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		E837D49EBAE33057B1F39FEF6ECDCFC2 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3122,8 +3122,8 @@
 		02CD6AFC0646EAD611BBAEBE0ADA2EB9 /* Build configuration list for PBXNativeTarget "AltHanekeSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A12ECBC2A6639BB6982FB0038E041F74 /* Debug */,
-				D28927DB23E00D0BDB970A0F8CDF28E5 /* Release */,
+				85553EAF9A4BB607EB3E4FD8B060F80C /* Debug */,
+				C22EC1EF8CE9CEC869EFA6C583F409BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3167,8 +3167,8 @@
 		AC0546E355DB8BD87C879C8B97C1BDB2 /* Build configuration list for PBXNativeTarget "HanekeObjc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D5746FBB9E70FD85BECC07CED31302C8 /* Debug */,
-				1CAAAC29D00B4E5AF16FA350C6243082 /* Release */,
+				8FDFC43E827764431460975F4B67D1B4 /* Debug */,
+				E79EF616B3FFB04B106061E4DE31CE36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3185,8 +3185,8 @@
 		EAD5952F121900667F803A46847ADE4A /* Build configuration list for PBXNativeTarget "ReactiveCache" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D49AC9DB8291074FDAE65D1B95D2CAA7 /* Debug */,
-				8C8E036390DA200ECEA3257B752015D0 /* Release */,
+				DCD7C958FB39CC52DBC4F341294C3000 /* Debug */,
+				AB2B609C19B2E4B24DADBD83403A38A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

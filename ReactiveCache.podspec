@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ReactiveCache"
-  s.version          = "0.36.0"
+  s.version          = "0.37.0"
   s.summary          = "Cache for ReactiveCocoa."
   s.description      = <<-DESC
                        A cache interface for ReactiveCocoa. The underlying cache is HanekeSwift.
@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
 #  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.swift_version = '5.0'
   s.dependency 'ReactiveObjC' # swift module needs all ReactiveCocoa headers
-  s.dependency 'HanekeObjc'
+  s.dependency 'HanekeObjc', '>= 0.26.0' # support swift5
 end
