@@ -6,7 +6,6 @@
 //
 //
 
-#import <Foundation/Foundation.h>
 #import "RACCache.h"
 
 @interface RACDataCache : RACCache

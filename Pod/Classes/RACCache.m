@@ -5,16 +5,11 @@
 //  Created by Hai Feng Kao on 2015/6/15.
 //
 //
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "RACCache.h"
-#import "RACEXTSCope.h"
-#import "RACSubject.h"
-#import "RACDisposable.h"
-#import "RACSignal+Operations.h"
-#import "RACTuple.h"
 @import HanekeObjc;
 @import AltHaneke;
-#import "RACSignal.h"
+@import ReactiveObjC;
 
 @interface RACCache()
 @end

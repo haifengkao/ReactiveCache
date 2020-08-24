@@ -8,7 +8,7 @@
 
 #import "RACImageCache.h"
 @import HanekeObjc;
-#import "RACSignal.h"
+@import ReactiveObjC;
 
 @implementation RACImageCache
 

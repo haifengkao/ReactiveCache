@@ -8,7 +8,7 @@
 
 #import "RACDataCache.h"
 @import HanekeObjc;
-#import "RACSignal.h"
+@import ReactiveObjC;
 
 @implementation RACDataCache
 
